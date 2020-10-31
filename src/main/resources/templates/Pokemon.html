@@ -18,7 +18,9 @@
 		<div class="panel-heading">
 			<h1 class="panel-title">Pokemon</h1>
 		</div>
-			<div class="panel-body">
+			
+			<div class="pokemon-title">
+				<img alt="pokemonimg" th:src="${pokemon.front_default}">
 				<p th:text="${pokemon.id}"></p>
 				<p th:text="${pokemon.name}"> </p>
 

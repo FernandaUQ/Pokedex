@@ -1,21 +1,21 @@
 package com.project.pokedex.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.pokedex.model.Pokemon;
 import com.project.pokedex.service.PokemonService;
 
-@RestController
+@Controller
 public class PokemonController {
 	
 	@Autowired
 	private PokemonService pokemonService;
 	
-	
+	@GetMapping("pokemon/resp/{id}")
 	public ResponseEntity<Pokemon> obterPokemon(@PathVariable String id) {
 		
 		Pokemon pokemon = this.pokemonService.PokeCall(id);

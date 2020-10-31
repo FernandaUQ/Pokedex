@@ -1,52 +1,61 @@
 package com.project.pokedex.model;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Pokemon {
 	@JsonProperty("id")
 	private String id;
-	
+
 	@JsonProperty("name")
 	private String name;
-
+	
+	/*@JsonUnwrapped
+	@JsonProperty("front_default")*/
+	private String front_default;
 
 	
-	public Pokemon () {	
+	@SuppressWarnings("unchecked")
+	@JsonProperty("sprites")
+	private void unpackNested(Map<String, Object> sprites) {
+		Map<String, Object> others = (Map<String, Object>) sprites.get("other");
+		Map<String, String> officialartwork = (Map<String, String>) others.get("official-artwork");
+		this.front_default = officialartwork.get("front_default");
 	}
 
-	
-	
-	public Pokemon(String id) {
-		super();
-		this.id = id;
+	public Pokemon() {
 	}
 
-
-
-	public Pokemon(String id, String name) {
+	public Pokemon(String id, String name, String front_default) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.front_default = front_default;
 	}
-
 
 	public String getId() {
 		return id;
 	}
 
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getFront_default() {
+		return front_default;
+	}
+
+	public void setFront_default(String front_default) {
+		this.front_default = front_default;
 	}
 
 	@Override
@@ -56,8 +65,6 @@ public class Pokemon {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -76,15 +83,9 @@ public class Pokemon {
 		return true;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Pokemon [id=" + id + ", name=" + name + "]";
 	}
-	
-	
+
 }
-
-
-	
