@@ -7,7 +7,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.5.RELEASE</version>
-		<relativePath>..</relativePath> <!-- lookup parent from repository --> 
+		<relativePath>..</relativePath> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.project</groupId>
 	<artifactId>pokedex</artifactId>
@@ -61,19 +61,19 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-	   <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>5.1</version>
-            <scope>compile</scope>
-      </dependency>
-      <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.faces</artifactId>
-            <version>2.1.13</version>
-            <scope>compile</scope>
-      </dependency>
-      <dependency>
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>5.1</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.faces</artifactId>
+			<version>2.1.13</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery</artifactId>
 			<version>2.1.1</version>
@@ -84,13 +84,17 @@
 			<artifactId>bootstrap</artifactId>
 			<version>3.3.7</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-      
-    </dependencies>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>

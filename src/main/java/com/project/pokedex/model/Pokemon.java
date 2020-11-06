@@ -10,12 +10,18 @@ public class Pokemon {
 
 	@JsonProperty("name")
 	private String name;
-	
-	/*@JsonUnwrapped
-	@JsonProperty("front_default")*/
+
 	private String front_default;
 
-	
+	/*
+	 * Quando o json possui objetos aninhados (um objeto dentro de outro objeto) é
+	 * necessário construir um map para retirar apenas um atributo. A construção
+	 * deste se refere na inclusão do map (pacote java.util), construido conforme o
+	 * item json Caso seja objeto dentro de objeto os parametros será conforme o
+	 * tipo do atributo desejado e o tipo object <String, Object>, quando chega no
+	 * atributo, pode ser <tipo, string>
+	 */
+
 	@SuppressWarnings("unchecked")
 	@JsonProperty("sprites")
 	private void unpackNested(Map<String, Object> sprites) {

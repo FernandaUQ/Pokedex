@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta charset="UTF-8" />
@@ -8,27 +7,159 @@
 
 <title>Pokemon</title>
 
-<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
 	rel="stylesheet" />
-<link th:href="@{/webjars/bootstrap/css/bootstrap-theme.min.css}"
+
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"
 	rel="stylesheet" />
-</head>
+
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+	rel="stylesheet" />
+<style type="text/css">
+body {
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-top: 5%;
+}
+
+.pokemon-img {
+	display: inline-block;
+	height: 15%;
+	width: 15%;
+	margin-top: 5%;
+	margin: 2px;
+	border: 2px solid;
+	border-color: black;
+	border-radius: 3px 5px;
+	border: 2px solid;
+	margin: 2px;
+	position: relative;
+	float: left;
+}
+
+.pokemon-detail {
+	display: inline-block;
+	height: 75%;
+	width: 75%;
+	margin-left: 15%;
+	float: left;
+	border-color: black;
+	border-radius: 3px 5px;
+	border: 2px solid;
+	position: relative;
+	margin-left: 2%;
+}
+
+.pokemon-data {
+	display: block;
+	height: 25%;
+	width: 15%;
+	margin: 2px;
+	border: 2px solid;
+	border-color: black;
+	border-radius: 3px 5px;
+	border: 2px solid;
+	position: relative;
+}
+
+.pokemon-stats {
+	grid-area: pokemon-stats;
+}
+
+.pokemon-moves {
+	grid-area: pokemon-moves;
+}
+
+p.pokemontext {
+	font-family: fantasy;
+	font-size: 100%;
+	text-align: center;
+	font-family: fantasy;
+}
+
+p.pokemontext2 {
+	font-family: arial;
+	font-size: 100%
+}
+
+img.pokemonimg {
+	height: 100%;
+	width: 100%;
+}
+
+footer {
+	color: #AAA
+}
+</style>
 <body>
-	<div class="panel panel-default" style="margin: 10px">
-		<div class="panel-heading">
-			<h1 class="panel-title">Pokemon</h1>
-		</div>
-			
-			<div class="pokemon-title">
-				<img alt="pokemonimg" th:src="${pokemon.front_default}">
-				<p th:text="${pokemon.id}"></p>
-				<p th:text="${pokemon.name}"> </p>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
 
+				<a class="navbar-brand" href="#">Pokedex</a>
 			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="#">Pokemon</a></li>
+				</ul>
 
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false"> Pokemon <span class="caret"></span>
+					</a>
+
+						<ul class="dropdown-menu">
+							<li><a href="http://www.algaworks.com" target="_blank">Site</a></li>
+							<li><a href="http://www.facebook.com/algaworks"
+								target="_blank">Facebook</a></li>
+							<li><a href="http://www.youtube.com/algaworks"
+								target="_blank">YouTube</a></li>
+							<li><a href="http://github.com/algaworks" target="_blank">Github</a></li>
+							<li><a href="http://blog.algaworks.com/" target="_blank">Nosso
+									Blog</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="pokemon-img">
+			<img class="pokemonimg" th:src="${pokemon.front_default}" />
+		</div>
+		<!-- 
+		 -->
+		<div class="pokemon-detail">
+			<p>descrição</p>
+			<p>Especie</p>
+			<p>Altura</p>
+			<p>largura</p>
+			<p>tipo</p>
+			<p>abilities</p>
+		</div>
+
+		<div class="pokemon-data">
+			<p class="pokemontext" th:text="${pokemon.id}"></p>
+			<p class="pokemontext" th:text="${pokemon.name}"></p>
+		</div>
+		<div class="pokemon-stats">
+		</div>
+		<div class="pokemon-moves"></div>
 	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
