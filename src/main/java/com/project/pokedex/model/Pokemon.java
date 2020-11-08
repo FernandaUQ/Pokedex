@@ -1,8 +1,11 @@
 package com.project.pokedex.model;
 
+import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.project.pokedex.model.dto.PokemonAbilityDTO;
+import com.project.pokedex.model.dto.PokemonTypeDTO;
 
 public class Pokemon {
 	@JsonProperty("id")
@@ -12,7 +15,15 @@ public class Pokemon {
 	private String name;
 
 	private String front_default;
+	
+	@JsonProperty("types")
+	private List<PokemonTypeDTO> type;
+	
+	@JsonProperty("abilities")
+	private List<PokemonAbilityDTO> ability;
+	
 
+	
 	/*
 	 * Quando o json possui objetos aninhados (um objeto dentro de outro objeto) é
 	 * necessário construir um map para retirar apenas um atributo. A construção
@@ -33,12 +44,17 @@ public class Pokemon {
 	public Pokemon() {
 	}
 
-	public Pokemon(String id, String name, String front_default) {
+	
+	
+	public Pokemon(String id, String name, String front_default, List<PokemonTypeDTO> type, List<PokemonAbilityDTO> ability) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.front_default = front_default;
+		this.type = type;
+		this.ability = ability;
 	}
+	
 
 	public String getId() {
 		return id;
@@ -63,6 +79,24 @@ public class Pokemon {
 	public void setFront_default(String front_default) {
 		this.front_default = front_default;
 	}
+	
+	
+
+	public List<PokemonTypeDTO> getType() {
+		return type;
+	}
+
+	public void setType(List<PokemonTypeDTO> type) {
+		this.type = type;
+	}
+
+	public List<PokemonAbilityDTO> getAbility() {
+		return ability;
+	}
+
+	public void setAbility(List<PokemonAbilityDTO> ability) {
+		this.ability = ability;
+	}
 
 	@Override
 	public int hashCode() {
@@ -71,6 +105,8 @@ public class Pokemon {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+	
+	
 
 	@Override
 	public boolean equals(Object obj) {

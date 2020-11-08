@@ -6,28 +6,28 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.project.pokedex.model.Ability;
+import com.project.pokedex.model.Type;
 
 import reactor.core.publisher.Mono;
 
 @Service
-public class AbilityService {
+public class TypeService {
 	
 	@Autowired
-	private WebClient webClientAbility;
+	private WebClient webClientType;
 	
-	public Ability AbilityCall(String id) {
+	public Type TypeCall(String id) {
 
-		Mono<Ability> monoAbility = webClientAbility
+		Mono<Type> monoType = webClientType
 			.method(HttpMethod.GET)
-			.uri("/ability/{id}", id)
+			.uri("/type/{id}", id)
 			.retrieve()
-			.bodyToMono(Ability.class);
+			.bodyToMono(Type.class);
 	
 		
-		Ability ability = monoAbility.block();
+		Type type = monoType.block();
 
-		return ability;
+		return type;
 	}
 
 }

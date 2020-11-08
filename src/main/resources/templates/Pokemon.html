@@ -144,16 +144,24 @@ footer {
 			<p>Especie</p>
 			<p>Altura</p>
 			<p>largura</p>
-			<p>tipo</p>
-			<p>abilities</p>
+			<table class="table table-striped table-bordered">
+				<thead>
+					<tr th:text="${types.type.name}"> </tr>
+				</thead>
+			</table >
+			<table class="table table-striped table-bordered">
+				<tr>
+					<th th:text="${abilities.ability.name}">Ability</th>
+					
+				</tr>
+			</table>
 		</div>
 
 		<div class="pokemon-data">
 			<p class="pokemontext" th:text="${pokemon.id}"></p>
 			<p class="pokemontext" th:text="${pokemon.name}"></p>
 		</div>
-		<div class="pokemon-stats">
-		</div>
+		<div class="pokemon-stats"></div>
 		<div class="pokemon-moves"></div>
 	</div>
 	<script
