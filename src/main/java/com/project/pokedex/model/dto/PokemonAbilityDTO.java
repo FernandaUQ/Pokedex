@@ -1,12 +1,15 @@
 package com.project.pokedex.model.dto;
 
+import java.beans.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.pokedex.model.Ability;
 import com.project.pokedex.model.Pokemon;
+import com.project.pokedex.model.dto.pk.PokemonAbilityDTOPK;
 
 public class PokemonAbilityDTO {
 	
-	private Pokemon pokemon;
-	private Ability ability;
+	private PokemonAbilityDTOPK idPA = new PokemonAbilityDTOPK();
 	private boolean is_hidden;
 	private int slot;
 	
@@ -16,38 +19,30 @@ public class PokemonAbilityDTO {
 		super();
 	}
 
-
-
 	public PokemonAbilityDTO(Pokemon pokemon, Ability ability, boolean is_hidden, int slot) {
 		super();
-		this.pokemon = pokemon;
-		this.ability = ability;
+		idPA.setAbility(ability);
+		idPA.setPokemon(pokemon);
 		this.is_hidden = is_hidden;
 		this.slot = slot;
 	}
 
 
-
+	@Transient
 	public Pokemon getPokemon() {
-		return pokemon;
+		return idPA.getPokemon();
 	}
-
-
 
 	public void setPokemon(Pokemon pokemon) {
-		this.pokemon = pokemon;
+		idPA.setPokemon(pokemon);
 	}
-
-
 
 	public Ability getAbility() {
-		return ability;
+		return idPA.getAbility();
 	}
 
-
-
 	public void setAbility(Ability ability) {
-		this.ability = ability;
+		idPA.setAbility(ability);
 	}
 
 
@@ -73,16 +68,5 @@ public class PokemonAbilityDTO {
 	public void setSlot(int slot) {
 		this.slot = slot;
 	}
-
-
-
-	@Override
-	public String toString() {
-		return "PokemonAbilityDTO [pokemon=" + pokemon + ", ability=" + ability + ", is_hidden=" + is_hidden + ", slot="
-				+ slot + "]";
-	}
-	
-	
-	
 
 }

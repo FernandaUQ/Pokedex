@@ -1,44 +1,40 @@
 package com.project.pokedex.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.pokedex.model.Pokemon;
 import com.project.pokedex.model.Type;
+import com.project.pokedex.model.dto.pk.PokemonTypeDTOPK;
 
 public class PokemonTypeDTO {
-
-	private Pokemon pokemon;
-	private Type type;
+	
+	private PokemonTypeDTOPK idPT = new PokemonTypeDTOPK();
 	private int slot;
 
 	public PokemonTypeDTO() {
 		super();
 	}
 
-	public PokemonTypeDTO(Pokemon pokemon, int slot) {
+	public PokemonTypeDTO(Pokemon pokemon, Type type,  int slot) {
 		super();
-		this.pokemon = pokemon;
+		idPT.setPokemon(pokemon);
+		idPT.setType(type);
 		this.slot = slot;
 	}
 	
-	public PokemonTypeDTO(Type type, int slot) {
-		super();
-		this.type = type;
-		this.slot = slot;
-	}
-
 	public Pokemon getPokemon() {
-		return pokemon;
+		return idPT.getPokemon();
 	}
-
+	@JsonIgnore
 	public void setPokemon(Pokemon pokemon) {
-		this.pokemon = pokemon;
+		idPT.setPokemon(pokemon);
 	}
 
 	public Type getType() {
-		return type;
+		return idPT.getType();
 	}
 
 	public void setType(Type type) {
-		this.type = type;
+		idPT.setType(type);
 	}
 
 	public int getSlot() {
@@ -48,12 +44,5 @@ public class PokemonTypeDTO {
 	public void setSlot(int slot) {
 		this.slot = slot;
 	}
-
-	@Override
-	public String toString() {
-		return "PokemonTypeDTO [pokemon=" + pokemon + ", type=" + type + ", slot=" + slot + "]";
-	}
-	
-	
 	
 }

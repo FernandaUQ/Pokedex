@@ -3,18 +3,16 @@ package com.project.pokedex.model;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.pokedex.model.dto.AbilityEffectDTO;
 
+
 public class Ability implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@JsonProperty("id")
 	private String id;
-
-	@JsonProperty("name")
 	private String name;
-
+	
 	private List<AbilityEffectDTO> effect_entries;
 
 	private String effect;

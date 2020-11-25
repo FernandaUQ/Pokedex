@@ -145,15 +145,18 @@ footer {
 			<p>Altura</p>
 			<p>largura</p>
 			<table class="table table-striped table-bordered">
-				<thead>
-					<tr th:text="${types.type.name}"> </tr>
-				</thead>
+				<tbody>
+					<tr th:each="type: ${types}"> 
+						<td th:text="${type.name}"></td>
+					</tr>
+				</tbody>
 			</table >
 			<table class="table table-striped table-bordered">
-				<tr>
-					<th th:text="${abilities.ability.name}">Ability</th>
-					
-				</tr>
+				<tbody>
+					<tr th:each="ability: ${abilities}"> 
+						<td th:text="${ability.name}"></td>
+					</tr>
+				</tbody>
 			</table>
 		</div>
 

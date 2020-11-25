@@ -1,5 +1,7 @@
 package com.project.pokedex.model;
 
+import java.beans.Transient;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -7,13 +9,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.pokedex.model.dto.PokemonAbilityDTO;
 import com.project.pokedex.model.dto.PokemonTypeDTO;
 
-public class Pokemon {
+public class Pokemon implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	@JsonProperty("id")
 	private String id;
 
 	@JsonProperty("name")
 	private String name;
-
+	
+	
 	private String front_default;
 	
 	@JsonProperty("types")
@@ -35,6 +40,7 @@ public class Pokemon {
 
 	@SuppressWarnings("unchecked")
 	@JsonProperty("sprites")
+	@Transient
 	private void unpackNested(Map<String, Object> sprites) {
 		Map<String, Object> others = (Map<String, Object>) sprites.get("other");
 		Map<String, String> officialartwork = (Map<String, String>) others.get("official-artwork");

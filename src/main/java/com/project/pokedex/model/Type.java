@@ -1,20 +1,24 @@
 package com.project.pokedex.model;
 
+import java.beans.Transient;
+import java.io.Serializable;
 import java.util.List;
 
-import com.project.pokedex.model.dto.PokemonTypeDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class Type {
-
+public class Type implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	@JsonIgnore
 	private String id;
 	private String name;
-	private List<PokemonTypeDTO> pokemon;
+	private List<Pokemon> pokemon;
 
 	public Type() {
 
 	};
 
-	public Type(String id, String name, List<PokemonTypeDTO> pokemon) {
+	public Type(String id, String name, List<Pokemon> pokemon) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -37,13 +41,11 @@ public class Type {
 		this.name = name;
 	};
 	
-	
-	
-	public List<PokemonTypeDTO> getPokemon() {
+	public List<Pokemon> getPokemon() {
 		return pokemon;
 	}
 
-	public void setPokemon(List<PokemonTypeDTO> pokemon) {
+	public void setPokemon(List<Pokemon> pokemon) {
 		this.pokemon = pokemon;
 	}
 
