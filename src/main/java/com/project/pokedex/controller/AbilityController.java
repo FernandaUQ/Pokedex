@@ -24,7 +24,6 @@ public class AbilityController {
 	}
 	
 	public Ability obterAbilityPorId (@PathVariable String i) {
-		
 		Ability ability = this.abilityService.AbilityCall(i);
 		
 		return ability;

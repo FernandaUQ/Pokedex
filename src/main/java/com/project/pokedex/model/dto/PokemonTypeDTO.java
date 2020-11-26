@@ -1,5 +1,7 @@
 package com.project.pokedex.model.dto;
 
+import java.beans.Transient;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.pokedex.model.Pokemon;
 import com.project.pokedex.model.Type;
@@ -24,13 +26,13 @@ public class PokemonTypeDTO {
 	public Pokemon getPokemon() {
 		return idPT.getPokemon();
 	}
-	@JsonIgnore
+	@Transient
 	public void setPokemon(Pokemon pokemon) {
 		idPT.setPokemon(pokemon);
 	}
 
-	public Type getType() {
-		return idPT.getType();
+	public String getType() {
+		return idPT.getType().getName();
 	}
 
 	public void setType(Type type) {

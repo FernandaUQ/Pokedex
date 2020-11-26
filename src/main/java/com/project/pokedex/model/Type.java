@@ -1,15 +1,12 @@
 package com.project.pokedex.model;
 
-import java.beans.Transient;
 import java.io.Serializable;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Type implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@JsonIgnore
+	
 	private String id;
 	private String name;
 	private List<Pokemon> pokemon;

@@ -27,18 +27,17 @@ public class PokemonAbilityDTO {
 		this.slot = slot;
 	}
 
-
 	@Transient
 	public Pokemon getPokemon() {
 		return idPA.getPokemon();
 	}
-
+	
 	public void setPokemon(Pokemon pokemon) {
 		idPA.setPokemon(pokemon);
 	}
 
-	public Ability getAbility() {
-		return idPA.getAbility();
+	public String getAbility() {
+		return idPA.getAbility().getName();
 	}
 
 	public void setAbility(Ability ability) {

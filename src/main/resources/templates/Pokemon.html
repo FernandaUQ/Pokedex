@@ -146,15 +146,17 @@ footer {
 			<p>largura</p>
 			<table class="table table-striped table-bordered">
 				<tbody>
-					<tr th:each="type: ${types}"> 
-						<td th:text="${type.name}"></td>
+				<tr>Type</tr>
+					<tr th:each="type:${pokemon.type}"> 
+						<td th:text="${type.type}"></td>
 					</tr>
 				</tbody>
 			</table >
 			<table class="table table-striped table-bordered">
 				<tbody>
-					<tr th:each="ability: ${abilities}"> 
-						<td th:text="${ability.name}"></td>
+				<tr> Abilities </tr>
+					<tr th:each="ability: ${pokemon.ability}"> 
+						<td th:text="${ability.ability}"></td>
 					</tr>
 				</tbody>
 			</table>

@@ -3,8 +3,6 @@ package com.project.pokedex.model;
 import java.io.Serializable;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.pokedex.model.dto.AbilityEffectDTO;
 
 
@@ -21,10 +19,8 @@ public class Ability implements Serializable {
 	
 	
 	public void getEffect () {
-		for (int i= 1; i< effect_entries.size() ; i++) {
-			this.effect = effect_entries.get(i).getShort_effect();
+				this.effect = effect_entries.get(1).getShort_effect();
 		}
-	}
 	
 	public Ability() {
 		super();

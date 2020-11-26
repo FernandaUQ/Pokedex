@@ -1,6 +1,5 @@
 package com.project.pokedex.model;
 
-import java.beans.Transient;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +39,6 @@ public class Pokemon implements Serializable{
 
 	@SuppressWarnings("unchecked")
 	@JsonProperty("sprites")
-	@Transient
 	private void unpackNested(Map<String, Object> sprites) {
 		Map<String, Object> others = (Map<String, Object>) sprites.get("other");
 		Map<String, String> officialartwork = (Map<String, String>) others.get("official-artwork");
