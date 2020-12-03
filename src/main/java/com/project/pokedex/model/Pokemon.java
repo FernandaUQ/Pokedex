@@ -12,11 +12,13 @@ public class Pokemon implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@JsonProperty("id")
-	private String id;
+	private int id;
 
 	@JsonProperty("name")
 	private String name;
 	
+	private Double height;
+	private Double weight;
 	
 	private String front_default;
 	
@@ -26,17 +28,6 @@ public class Pokemon implements Serializable{
 	@JsonProperty("abilities")
 	private List<PokemonAbilityDTO> ability;
 	
-
-	
-	/*
-	 * Quando o json possui objetos aninhados (um objeto dentro de outro objeto) é
-	 * necessário construir um map para retirar apenas um atributo. A construção
-	 * deste se refere na inclusão do map (pacote java.util), construido conforme o
-	 * item json Caso seja objeto dentro de objeto os parametros será conforme o
-	 * tipo do atributo desejado e o tipo object <String, Object>, quando chega no
-	 * atributo, pode ser <tipo, string>
-	 */
-
 	@SuppressWarnings("unchecked")
 	@JsonProperty("sprites")
 	private void unpackNested(Map<String, Object> sprites) {
@@ -49,8 +40,7 @@ public class Pokemon implements Serializable{
 	}
 
 	
-	
-	public Pokemon(String id, String name, String front_default, List<PokemonTypeDTO> type, List<PokemonAbilityDTO> ability) {
+	public Pokemon(int id, String name, String front_default, List<PokemonTypeDTO> type, List<PokemonAbilityDTO> ability) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -60,11 +50,11 @@ public class Pokemon implements Serializable{
 	}
 	
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -106,11 +96,9 @@ public class Pokemon implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + id;
 		return result;
 	}
-	
-	
 
 	@Override
 	public boolean equals(Object obj) {
@@ -121,10 +109,7 @@ public class Pokemon implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Pokemon other = (Pokemon) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		return true;
 	}

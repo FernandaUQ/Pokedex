@@ -18,82 +18,6 @@
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
 	rel="stylesheet" />
-<style type="text/css">
-body {
-	margin-left: 5%;
-	margin-right: 5%;
-	margin-top: 5%;
-}
-
-.pokemon-img {
-	display: inline-block;
-	height: 15%;
-	width: 15%;
-	margin-top: 5%;
-	margin: 2px;
-	border: 2px solid;
-	border-color: black;
-	border-radius: 3px 5px;
-	border: 2px solid;
-	margin: 2px;
-	position: relative;
-	float: left;
-}
-
-.pokemon-detail {
-	display: inline-block;
-	height: 75%;
-	width: 75%;
-	margin-left: 15%;
-	float: left;
-	border-color: black;
-	border-radius: 3px 5px;
-	border: 2px solid;
-	position: relative;
-	margin-left: 2%;
-}
-
-.pokemon-data {
-	display: block;
-	height: 25%;
-	width: 15%;
-	margin: 2px;
-	border: 2px solid;
-	border-color: black;
-	border-radius: 3px 5px;
-	border: 2px solid;
-	position: relative;
-}
-
-.pokemon-stats {
-	grid-area: pokemon-stats;
-}
-
-.pokemon-moves {
-	grid-area: pokemon-moves;
-}
-
-p.pokemontext {
-	font-family: fantasy;
-	font-size: 100%;
-	text-align: center;
-	font-family: fantasy;
-}
-
-p.pokemontext2 {
-	font-family: arial;
-	font-size: 100%
-}
-
-img.pokemonimg {
-	height: 100%;
-	width: 100%;
-}
-
-footer {
-	color: #AAA
-}
-</style>
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
@@ -133,41 +57,81 @@ footer {
 			</div>
 		</div>
 	</nav>
-	<div class="container">
-		<div class="pokemon-img">
-			<img class="pokemonimg" th:src="${pokemon.front_default}" />
-		</div>
-		<!-- 
-		 -->
-		<div class="pokemon-detail">
-			<p>descrição</p>
-			<p>Especie</p>
-			<p>Altura</p>
-			<p>largura</p>
-			<table class="table table-striped table-bordered">
-				<tbody>
-				<tr>Type</tr>
-					<tr th:each="type:${pokemon.type}"> 
-						<td th:text="${type.type}"></td>
-					</tr>
-				</tbody>
-			</table >
-			<table class="table table-striped table-bordered">
-				<tbody>
-				<tr> Abilities </tr>
-					<tr th:each="ability: ${pokemon.ability}"> 
-						<td th:text="${ability.ability}"></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+	<div class="container-fluid" style="margin-top: 5%">
+		<div class="row">
+			<div class="row" id="row-main">
+				<div class="col-md-3" id="sidebar">
+					<table class="table">
+						<tbody>
+							<tr th:each="pokemon: ${pokemons}">
+								<td th:text="${pokemon.id}" style="text-align:left;"></td>
+								<td><a th:href="@{http://localhost:8081/pokemon/{id}(id =${pokemon.id})}" th:text="${pokemon.name}" style="text-align: center;"></a></td>
+								<td><img th:src="${pokemon.front_default}"
+									class="rounded-circle" width="15%" height="6%" align="right" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-md-9" id="content">
+					<div class="col-md-4" style="width: 20%">
+						<img alt="Bootstrap Image Preview"
+							th:src="${pokemon.front_default}" class="rounded-circle"
+							width="60%" height="60%" />
+						<p class="textr" th:text="${pokemon.id}"></p>
+						<p class="pokemontext" th:text="${pokemon.name}"></p>
+					</div>
+					<div class="col-md-4">
+						<table class="table">
+							<tbody>
+								<tr>Type
+								</tr>
+								<tr th:each="type:${pokemon.type}">
+									<td th:text="${type.type}"></td>
+								</tr>
+							</tbody>
+						</table>
+						<table class="table">
+							<tbody>
+								<tr>Abilities
+								</tr>
+								<tr th:each="ability: ${pokemon.ability}">
+									<td th:text="${ability.ability}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="col-md-4">
+						<h2>Heading</h2>
+						<p>Donec id elit non mi porta gravida at eget metus. Fusce
+							dapibus, tellus ac cursus commodo, tortor mauris condimentum
+							nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
+							malesuada magna mollis euismod. Donec sed odio dui.</p>
+						<p>
+							<a class="btn" href="#">View details »</a>
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6"></div>
+					<div class="col-md-6">
+						<p>
+							Lorem ipsum dolor sit amet, <strong>consectetur
+								adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus
+							urna. In hac habitasse platea dictumst. Phasellus eu sem sapien,
+							sed vestibulum velit. Nam purus nibh, lacinia non faucibus et,
+							pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi
+								commodo sodales nisi id sodales. Proin consectetur, nisi id
+								commodo imperdiet, metus nunc consequat lectus, id bibendum diam
+								velit et dui.</em> Proin massa magna, vulputate nec bibendum nec,
+							posuere nec lacus. <small>Aliquam mi erat, aliquam vel
+								luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et
+								feugiat ipsum consequat eu.</small>
+						</p>
+					</div>
+				</div>
 
-		<div class="pokemon-data">
-			<p class="pokemontext" th:text="${pokemon.id}"></p>
-			<p class="pokemontext" th:text="${pokemon.name}"></p>
+			</div>
 		</div>
-		<div class="pokemon-stats"></div>
-		<div class="pokemon-moves"></div>
 	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

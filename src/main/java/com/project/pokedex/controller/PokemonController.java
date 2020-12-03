@@ -1,4 +1,9 @@
 package com.project.pokedex.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,41 +16,45 @@ import com.project.pokedex.service.PokemonService;
 
 @Controller
 public class PokemonController {
-	
+
 	@Autowired
 	private PokemonService pokemonService;
-	
+
 	@GetMapping("pokemon/resp/{id}")
-	public ResponseEntity<Pokemon> obterPokemon(@PathVariable String id) {
-		
+	public ResponseEntity<Pokemon> obterPokemon(@PathVariable int id) {
+
 		Pokemon pokemon = this.pokemonService.PokeCall(id);
 
-		return ResponseEntity.ok(pokemon) ;
+		return ResponseEntity.ok(pokemon);
 	}
-	
-	public Pokemon obterPokemonPorId (@PathVariable String id) {
-		
+
+	public Pokemon obterPokemonPorId(@PathVariable int id) {
+
 		Pokemon pokemon = this.pokemonService.PokeCall(id);
-		
+
 		return pokemon;
-		
+
 	}
-	
+
+	public List<Pokemon> obterPokemons() {
+		List<Pokemon> pokemons = new ArrayList<Pokemon>();
+		int i = 1;
+		do {
+		Pokemon pk = this.obterPokemonPorId(i);
+		pokemons.add(pk);
+		i++;
+		}while (i<20);
+		return pokemons;
+	}
+
 	@GetMapping("pokemon/{id}")
 	public ModelAndView PokemonView(Pokemon pokemon) {
-		
-		
-		ModelAndView modelAndView = new ModelAndView("Pokemon.html");	
+
+		ModelAndView modelAndView = new ModelAndView("Pokemon.html");
 		modelAndView.addObject("pokemon", obterPokemonPorId(pokemon.getId()));
-		
+		modelAndView.addObject("pokemons", obterPokemons());
 		return modelAndView;
-		
+
 	}
-	
-	
-		
-	}
-	
-	
-	
-	
+
+}
