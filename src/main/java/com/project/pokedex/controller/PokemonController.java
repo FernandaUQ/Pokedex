@@ -2,7 +2,6 @@ package com.project.pokedex.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.pokedex.model.Pokemon;
+import com.project.pokedex.model.Species;
 import com.project.pokedex.service.PokemonService;
 
 @Controller
@@ -19,6 +19,8 @@ public class PokemonController {
 
 	@Autowired
 	private PokemonService pokemonService;
+	private SpeciesController species;
+	private Species specie;
 
 	@GetMapping("pokemon/resp/{id}")
 	public ResponseEntity<Pokemon> obterPokemon(@PathVariable int id) {
@@ -53,6 +55,7 @@ public class PokemonController {
 		ModelAndView modelAndView = new ModelAndView("Pokemon.html");
 		modelAndView.addObject("pokemon", obterPokemonPorId(pokemon.getId()));
 		modelAndView.addObject("pokemons", obterPokemons());
+		modelAndView.addObject("Species", species.obterSpecies(specie.getId()));
 		return modelAndView;
 
 	}

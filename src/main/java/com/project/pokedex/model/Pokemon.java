@@ -38,17 +38,18 @@ public class Pokemon implements Serializable{
 
 	public Pokemon() {
 	}
-
 	
-	public Pokemon(int id, String name, String front_default, List<PokemonTypeDTO> type, List<PokemonAbilityDTO> ability) {
+	public Pokemon(int id, String name, Double height, Double weight, String front_default, List<PokemonTypeDTO> type,
+			List<PokemonAbilityDTO> ability) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.height = height;
+		this.weight = weight;
 		this.front_default = front_default;
 		this.type = type;
 		this.ability = ability;
 	}
-	
 
 	public int getId() {
 		return id;
@@ -90,6 +91,23 @@ public class Pokemon implements Serializable{
 
 	public void setAbility(List<PokemonAbilityDTO> ability) {
 		this.ability = ability;
+	}
+	
+	
+	public Double getHeight() {
+		return height;
+	}
+
+	public void setHeight(Double height) {
+		this.height = height;
+	}
+
+	public Double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Double weight) {
+		this.weight = weight;
 	}
 
 	@Override
