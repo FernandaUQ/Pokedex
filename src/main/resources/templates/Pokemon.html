@@ -74,12 +74,23 @@
 				</div>
 				<div class="col-md-9" id="content">
 					<div class="col-md-4" style="width: 20%">
-						<img alt="Bootstrap Image Preview"
-							th:src="${pokemon.front_default}" class="rounded-circle"
-							width="60%" height="60%" />
-						<p class="textr" th:text="${pokemon.id}"></p>
-						<p class="pokemontext" th:text="${pokemon.name}"></p>
-						<p class="pokemontext" th:text="${species.id}"></p>
+						<table class="table">
+							<tbody>
+								<tr>
+									<td><img alt="Bootstrap Image Preview"
+							th:src="${pokemon.front_default}" class="rounded-circle center"
+							width="50%" height="25%" /></td>
+								</tr>
+								<tr>
+									<td th:text="${pokemon.id}"></td>
+								</tr>		
+								<tr>
+									<td th:text="${pokemon.name}"></td>
+								</tr>
+									<td th:text="${species.genera}"></td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 					<div class="col-md-4">
 						<table class="table">

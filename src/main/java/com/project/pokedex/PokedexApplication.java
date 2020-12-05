@@ -9,10 +9,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.project.pokedex.controller.AbilityController;
-import com.project.pokedex.model.Ability;
-import com.project.pokedex.model.dto.AbilityEffectDTO;
-
 @SpringBootApplication
 public class PokedexApplication {
 	
@@ -27,11 +23,7 @@ public class PokedexApplication {
 	
 	public static void main(String[] args) throws IOException {
 		
-			SpringApplication.run(PokedexApplication.class, args);
-			
-			
-		
-			
+		SpringApplication.run(PokedexApplication.class, args);
 	}	
 		
 		}

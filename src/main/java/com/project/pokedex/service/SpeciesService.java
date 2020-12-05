@@ -16,11 +16,11 @@ public class SpeciesService {
 	@Autowired
 	private WebClient webClientSpecies;
 	
-	public Species SpeciesCall(String id) {
+	public Species SpeciesCall(Integer i) {
 
 		Mono<Species> monoSpecies = webClientSpecies
 			.method(HttpMethod.GET)
-			.uri("/pokemon-species/{id}", id)
+			.uri("/pokemon-species/{id}", i)
 			.retrieve()
 			.bodyToMono(Species.class);
 	
@@ -29,7 +29,6 @@ public class SpeciesService {
 
 		return species;
 	}
-	
-	
+
 
 }

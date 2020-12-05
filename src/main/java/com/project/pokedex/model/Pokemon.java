@@ -27,7 +27,7 @@ public class Pokemon implements Serializable{
 	
 	@JsonProperty("abilities")
 	private List<PokemonAbilityDTO> ability;
-	
+		
 	@SuppressWarnings("unchecked")
 	@JsonProperty("sprites")
 	private void unpackNested(Map<String, Object> sprites) {
@@ -39,6 +39,8 @@ public class Pokemon implements Serializable{
 	public Pokemon() {
 	}
 	
+	
+
 	public Pokemon(int id, String name, Double height, Double weight, String front_default, List<PokemonTypeDTO> type,
 			List<PokemonAbilityDTO> ability) {
 		super();
@@ -109,6 +111,7 @@ public class Pokemon implements Serializable{
 	public void setWeight(Double weight) {
 		this.weight = weight;
 	}
+
 
 	@Override
 	public int hashCode() {

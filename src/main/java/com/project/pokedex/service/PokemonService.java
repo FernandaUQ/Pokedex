@@ -31,18 +31,4 @@ public class PokemonService {
 		return pokemon;
 	}
 
-	public Pokemon PokemonCallAll() {
-		
-
-		Mono<Pokemon> monoPokemon = this.webClientPokemon
-				.method(HttpMethod.GET)
-				.uri("/pokemon")
-				.accept(MediaType.ALL)
-				.retrieve()
-				.bodyToMono(Pokemon.class);
-
-		Pokemon pokemon = monoPokemon.block();
-
-		return pokemon;
-}
 }

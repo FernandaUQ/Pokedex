@@ -3,7 +3,7 @@ package com.project.pokedex.model;
 import java.io.Serializable;
 import java.util.List;
 
-import com.project.pokedex.model.dto.Color;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.pokedex.model.dto.EggGroup;
 import com.project.pokedex.model.dto.Flavor_Text_Entries;
 import com.project.pokedex.model.dto.Genera;
@@ -11,9 +11,10 @@ import com.project.pokedex.model.dto.Genera;
 public class Species implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private String id;
+	private int id;
+	@JsonProperty("base_happiness")
 	private int baseHappiness;
-	private Color color;
+	@JsonProperty("egg_group")
 	private List<EggGroup> eggGroup;
 	private List<Flavor_Text_Entries> flavor_text_entries;
 	private List<Genera> genera ;
@@ -26,12 +27,11 @@ public class Species implements Serializable{
 	}
 
 	
-	public Species(String id, int baseHappiness, Color color, List<EggGroup> eggGroup,
+	public Species(int id, int baseHappiness, List<EggGroup> eggGroup,
 			List<Flavor_Text_Entries> flavor_text_entries, List<Genera> genera, int hatch_counter, int capture_rate) {
 		super();
 		this.id = id;
 		this.baseHappiness = baseHappiness;
-		this.color = color;
 		this.eggGroup = eggGroup;
 		this.flavor_text_entries = flavor_text_entries;
 		this.genera = genera;
@@ -40,11 +40,11 @@ public class Species implements Serializable{
 	}
 
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -54,14 +54,6 @@ public class Species implements Serializable{
 
 	public void setBaseHappiness(int baseHappiness) {
 		this.baseHappiness = baseHappiness;
-	}
-
-	public String getColor() {
-		return color.getName();
-	}
-
-	public void setColor(Color color) {
-		this.color = color;
 	}
 
 	public List<EggGroup> getEggGroup() {
@@ -84,8 +76,8 @@ public class Species implements Serializable{
 	}
 
 
-	public Genera getGenera() {
-		return genera.get(7);
+	public String getGenera() {
+		return genera.get(7).getGenus();
 	}
 
 
@@ -112,15 +104,15 @@ public class Species implements Serializable{
 	public void setCapture_rate(int capture_rate) {
 		this.capture_rate = capture_rate;
 	}
-
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + id;
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -131,10 +123,7 @@ public class Species implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Species other = (Species) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		return true;
 	}
@@ -142,7 +131,7 @@ public class Species implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Species [id=" + id + ", baseHappiness=" + baseHappiness + ", color=" + color + ", eggGroup=" + eggGroup
+		return "Species [id=" + id + ", baseHappiness=" + baseHappiness + ", eggGroup=" + eggGroup
 				+ ", flavor_text_entries=" + flavor_text_entries + ", genera=" + genera + ", hatch_counter="
 				+ hatch_counter + ", capture_rate=" + capture_rate + "]";
 	}
