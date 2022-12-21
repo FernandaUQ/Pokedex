@@ -17,45 +17,40 @@ import com.project.pokedex.service.PokemonService;
 @Controller
 public class PokemonController {
 
-	@Autowired
-	private PokemonService pokemonService;
-	
-	@Autowired
-	private SpeciesController speciesController;
-	
-	@GetMapping("pokemon/resp/{id}")
-	public ResponseEntity<Pokemon> obterPokemon(@PathVariable int id) {
+    private final PokemonService pokemonService;
+    private final SpeciesController speciesController;
 
-		Pokemon pokemon = this.pokemonService.callPokemonById(id);
+    public PokemonController(SpeciesController speciesController, PokemonService pokemonService) {
+        this.speciesController = speciesController;
+        this.pokemonService = pokemonService;
+    }
 
-		return ResponseEntity.ok(pokemon);
-	}
+    @GetMapping("pokemon/resp/{id}")
+    public ResponseEntity<Pokemon> obterPokemon(@PathVariable int id) {
+        Pokemon pokemon = this.pokemonService.callPokemonById(id);
+        return ResponseEntity.ok(pokemon);
+    }
 
-	public Pokemon obterPokemonPorId(@PathVariable int i) {
+    public Pokemon obterPokemonPorId(@PathVariable int i) {
+        Pokemon pokemon = this.pokemonService.callPokemonById(i);
+        return pokemon;
 
-		Pokemon pokemon = this.pokemonService.callPokemonById(i);
+    }
 
-		return pokemon;
+    public List<Pokemon.Reduced> obterPokemons() {
+        Page<Pokemon.Reduced> pokemons = this.pokemonService.callPokemonListPageable(0, 99999);
+        return pokemons.results;
+    }
 
-	}
 
-	public List<Pokemon.Reduced> obterPokemons() {
-		Page<Pokemon.Reduced> pokemons = this.pokemonService.callPokemonListPageable(0, 99999);
-		return pokemons.results;
-	}
-	
-	
-	
+    @GetMapping("pokemon/{id}")
+    public ModelAndView pokemonView(Pokemon pokemon, Species species) {
+        ModelAndView modelAndView = new ModelAndView("Pokemon.html");
+        modelAndView.addObject("pokemon", obterPokemonPorId(pokemon.getId()));
+        modelAndView.addObject("pokemons", obterPokemons());
+        modelAndView.addObject("species", speciesController.obterSpeciesPorId(species.getId()));
+        return modelAndView;
 
-	@GetMapping("pokemon/{id}")
-	public ModelAndView pokemonView(Pokemon pokemon, Species species) {
-		
-		ModelAndView modelAndView = new ModelAndView("Pokemon.html");
-		modelAndView.addObject("pokemon", obterPokemonPorId(pokemon.getId()));
-		modelAndView.addObject("pokemons", obterPokemons());
-		modelAndView.addObject("species", speciesController.obterSpeciesPorId(species.getId()));
-				return modelAndView;
-
-	}
+    }
 
 }

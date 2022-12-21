@@ -17,38 +17,35 @@ import java.util.List;
 @Service
 public class PokemonService {
 
-	@Autowired
-	private WebClient webClientPokemon;
-	
+    private WebClient webClientPokemon;
 
-	public Pokemon callPokemonById(int i) {
+    public PokemonService(WebClient webClientPokemon) {
+        this.webClientPokemon = webClientPokemon;
+    }
 
-		Mono<Pokemon> monoPokemon = this.webClientPokemon
-				.method(HttpMethod.GET)
-				.uri("/pokemon/{id}", i)
-				.accept(MediaType.ALL)
-				.retrieve()
-				.bodyToMono(Pokemon.class);
+    public Pokemon callPokemonById(int i) {
+        Mono<Pokemon> monoPokemon = this.webClientPokemon
+                .method(HttpMethod.GET)
+                .uri("/pokemon/{id}", i)
+                .accept(MediaType.ALL)
+                .retrieve()
+                .bodyToMono(Pokemon.class);
+        Pokemon pokemon = monoPokemon.block();
+        return pokemon;
+    }
 
-		Pokemon pokemon = monoPokemon.block();
+    public Page<Pokemon.Reduced> callPokemonListPageable(Integer offset, Integer limit) {
+        if (offset == null) offset = 0;
+        if (limit == null) limit = 9999999;
 
-		return pokemon;
-	}
-
-	public Page<Pokemon.Reduced> callPokemonListPageable(Integer offset, Integer limit) {
-		if (offset == null) offset = 0;
-		if (limit == null) limit = 9999999;
-
-		Mono<Page<Pokemon.Reduced>> monoPokemons = this.webClientPokemon
-				.method(HttpMethod.GET)
-				.uri("/pokemon?offset={offset}&limit={limit}", offset, limit)
-				.accept(MediaType.ALL)
-				.retrieve()
-				.bodyToMono(new ParameterizedTypeReference<Page<Pokemon.Reduced>>() {});
-
-		Page<Pokemon.Reduced> pokemons = monoPokemons.block();
-
-		return pokemons;
-	}
+        Mono<Page<Pokemon.Reduced>> monoPokemons = this.webClientPokemon
+                .method(HttpMethod.GET)
+                .uri("/pokemon?offset={offset}&limit={limit}", offset, limit)
+                .accept(MediaType.ALL)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<Page<Pokemon.Reduced>>() {});
+        Page<Pokemon.Reduced> pokemons = monoPokemons.block();
+        return pokemons;
+    }
 
 }
