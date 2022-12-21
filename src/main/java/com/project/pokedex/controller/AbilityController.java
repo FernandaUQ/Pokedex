@@ -16,15 +16,15 @@ public class AbilityController {
 	private AbilityService abilityService;
 	
 	@GetMapping("ability/resp/{id}")
-	public ResponseEntity<Ability> obterAbility(@PathVariable String id) {
+	public ResponseEntity<Ability> getAbility(@PathVariable String id) {
 		
 		Ability ability = this.abilityService.AbilityCall(id);
 
 		return ResponseEntity.ok(ability) ;
 	}
 	
-	public Ability obterAbilityPorId (@PathVariable String i) {
-		Ability ability = this.abilityService.AbilityCall(i);
+	public Ability getAbilityById(@PathVariable String id) {
+		Ability ability = this.abilityService.AbilityCall(id);
 		
 		return ability;
 		
@@ -35,7 +35,7 @@ public class AbilityController {
 		
 		
 		ModelAndView modelAndView = new ModelAndView("Ability.html");	
-		modelAndView.addObject("ability", obterAbilityPorId(ability.getId()));
+		modelAndView.addObject("ability", getAbilityById(ability.getId()));
 		
 		return modelAndView;
 		

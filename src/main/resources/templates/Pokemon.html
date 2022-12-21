@@ -63,11 +63,11 @@
 				<div class="col-md-3" id="sidebar">
 					<table class="table">
 						<tbody>
-							<tr th:each="pokemon: ${pokemons}">
-								<td th:text="${pokemon.id}" style="text-align:left;"></td>
-								<td><a th:href="@{http://localhost:8081/pokemon/{id}(id =${pokemon.id})}" th:text="${pokemon.name}" style="text-align: center;"></a></td>
-								<td><img th:src="${pokemon.front_default}"
-									class="rounded-circle" width="15%" height="6%" align="right" /></td>
+							<tr th:each="pokemon : ${pokemons}">
+<!--								<td th:text="${pokemon.id}" style="text-align:left;"></td>-->
+								<td><a th:href="${pokemon.url}" th:text="${pokemon.name}" style="text-align: center;"></a></td>
+<!--								<td><img th:src="${pokemon.front_default}"-->
+<!--									class="rounded-circle" width="15%" height="6%" align="right" /></td>-->
 							</tr>
 						</tbody>
 					</table>

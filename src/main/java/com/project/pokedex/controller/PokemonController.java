@@ -1,8 +1,8 @@
 package com.project.pokedex.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import com.project.pokedex.util.classes.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.project.pokedex.model.Pokemon;
 import com.project.pokedex.model.Species;
 import com.project.pokedex.service.PokemonService;
-import com.project.pokedex.service.SpeciesService;
 
 @Controller
 public class PokemonController {
@@ -27,35 +26,29 @@ public class PokemonController {
 	@GetMapping("pokemon/resp/{id}")
 	public ResponseEntity<Pokemon> obterPokemon(@PathVariable int id) {
 
-		Pokemon pokemon = this.pokemonService.PokeCall(id);
+		Pokemon pokemon = this.pokemonService.callPokemonById(id);
 
 		return ResponseEntity.ok(pokemon);
 	}
 
 	public Pokemon obterPokemonPorId(@PathVariable int i) {
 
-		Pokemon pokemon = this.pokemonService.PokeCall(i);
+		Pokemon pokemon = this.pokemonService.callPokemonById(i);
 
 		return pokemon;
 
 	}
 
-	public List<Pokemon> obterPokemons() {
-		List<Pokemon> pokemons = new ArrayList<Pokemon>();
-		int i = 1;
-		do {
-		Pokemon pk = this.obterPokemonPorId(i);
-		pokemons.add(pk);
-		i++;
-		}while (i<20);
-		return pokemons;
+	public List<Pokemon.Reduced> obterPokemons() {
+		Page<Pokemon.Reduced> pokemons = this.pokemonService.callPokemonListPageable(0, 99999);
+		return pokemons.results;
 	}
 	
 	
 	
 
 	@GetMapping("pokemon/{id}")
-	public ModelAndView PokemonView(Pokemon pokemon, Species species) {
+	public ModelAndView pokemonView(Pokemon pokemon, Species species) {
 		
 		ModelAndView modelAndView = new ModelAndView("Pokemon.html");
 		modelAndView.addObject("pokemon", obterPokemonPorId(pokemon.getId()));
