@@ -64,8 +64,8 @@
 					<table class="table">
 						<tbody>
 							<tr th:each="pokemon : ${pokemons}">
-<!--								<td th:text="${pokemon.id}" style="text-align:left;"></td>-->
-								<td><a th:href="${pokemon.url}" th:text="${pokemon.name}" style="text-align: center;"></a></td>
+								<td th:text="${pokemon.dexNumber}" style="text-align:left;"></td>
+								<td><a th:href="@{http://localhost:8081/pokemon?pokemonId={id}(id =${pokemon.dexNumber})}" th:text="${pokemon.name}" style="text-align: center;"></a></td>
 <!--								<td><img th:src="${pokemon.front_default}"-->
 <!--									class="rounded-circle" width="15%" height="6%" align="right" /></td>-->
 							</tr>

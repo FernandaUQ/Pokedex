@@ -37,6 +37,7 @@ public class Pokemon implements Serializable {
     }
 
     public static class Reduced {
+        private Integer dexNumber;
         private String name;
         private String url;
 
@@ -61,6 +62,16 @@ public class Pokemon implements Serializable {
 
         public void setUrl(String url) {
             this.url = url;
+        }
+
+        public Integer getDexNumber() {
+            var urlParted = this.url.split("/pokemon/", 2);
+            var dexNum = urlParted.length > 1 ? urlParted[1].replace("/", "") : "0";
+            return Integer.valueOf(dexNum);
+        }
+
+        public void setDexNumber(Integer dexNumber) {
+            this.dexNumber = dexNumber;
         }
     }
 
