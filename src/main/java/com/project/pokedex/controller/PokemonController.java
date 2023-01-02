@@ -49,10 +49,12 @@ public class PokemonController {
             @RequestParam(name = "pokemonId", required = false) Integer pokemonId,
             Species species
     ) {
+        var getPokemon = obterPokemonPorId(pokemonId != null && pokemonId > 0 ? pokemonId : 1);
+
         ModelAndView modelAndView = new ModelAndView("Pokemon.html");
-        modelAndView.addObject("pokemon", obterPokemonPorId(pokemonId != null && pokemonId > 0 ? pokemonId : 1));
+        modelAndView.addObject("pokemon", getPokemon);
         modelAndView.addObject("pokemons", obterPokemons());
-//        modelAndView.addObject("species", speciesController.obterSpeciesPorId(species.getId()));
+//        modelAndView.addObject("species", speciesController.obterSpeciesPorId(getPokemon.));
         return modelAndView;
 
     }

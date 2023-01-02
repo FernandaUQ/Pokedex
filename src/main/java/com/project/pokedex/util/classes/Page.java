@@ -3,10 +3,10 @@ package com.project.pokedex.util.classes;
 import java.util.List;
 
 public class Page<T> {
-    public final Integer count;
-    public final String next;
-    public final String previous;
-    public final List<T> results;
+    public Integer count;
+    public String next;
+    public String previous;
+    public List<T> results;
 
     public Page(Integer count, String next, String previous, List<T> results) {
         this.count = count;
@@ -14,4 +14,6 @@ public class Page<T> {
         this.previous = previous;
         this.results = results;
     }
+
+    public Page() {}
 }

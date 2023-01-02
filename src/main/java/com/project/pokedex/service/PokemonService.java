@@ -24,28 +24,26 @@ public class PokemonService {
     }
 
     public Pokemon callPokemonById(int i) {
-        Mono<Pokemon> monoPokemon = this.webClientPokemon
+        return this.webClientPokemon
                 .method(HttpMethod.GET)
                 .uri("/pokemon/{id}", i)
                 .accept(MediaType.ALL)
                 .retrieve()
-                .bodyToMono(Pokemon.class);
-        Pokemon pokemon = monoPokemon.block();
-        return pokemon;
+                .bodyToMono(Pokemon.class)
+                .block();
     }
 
     public Page<Pokemon.Reduced> callPokemonListPageable(Integer offset, Integer limit) {
         if (offset == null) offset = 0;
         if (limit == null) limit = 9999999;
 
-        Mono<Page<Pokemon.Reduced>> monoPokemons = this.webClientPokemon
+        return this.webClientPokemon
                 .method(HttpMethod.GET)
                 .uri("/pokemon?offset={offset}&limit={limit}", offset, limit)
                 .accept(MediaType.ALL)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<Page<Pokemon.Reduced>>() {});
-        Page<Pokemon.Reduced> pokemons = monoPokemons.block();
-        return pokemons;
+                .bodyToMono(new ParameterizedTypeReference<Page<Pokemon.Reduced>>() {})
+                .block();
     }
 
 }

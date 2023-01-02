@@ -1,12 +1,14 @@
 package com.project.pokedex.model;
 
+
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.pokedex.model.dto.PokemonAbilityDTO;
 import com.project.pokedex.model.dto.PokemonTypeDTO;
+import lombok.Data;
 
 public class Pokemon implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -28,16 +30,12 @@ public class Pokemon implements Serializable {
     @JsonProperty("abilities")
     private List<PokemonAbilityDTO> ability;
 
-    @SuppressWarnings("unchecked")
     @JsonProperty("sprites")
-    private void unpackNested(Map<String, Object> sprites) {
-        Map<String, Object> others = (Map<String, Object>) sprites.get("other");
-        Map<String, String> officialartwork = (Map<String, String>) others.get("official-artwork");
-        this.front_default = officialartwork.get("front_default");
-    }
+    public Image image;
+
 
     public static class Reduced {
-        private Integer dexNumber;
+
         private String name;
         private String url;
 
@@ -69,11 +67,19 @@ public class Pokemon implements Serializable {
             var dexNum = urlParted.length > 1 ? urlParted[1].replace("/", "") : "0";
             return Integer.valueOf(dexNum);
         }
-
-        public void setDexNumber(Integer dexNumber) {
-            this.dexNumber = dexNumber;
-        }
     }
+
+    @Data
+    public static class Image {
+        @JsonProperty("back_default")
+        private String frontDefault;
+//        @JsonProperty("front_shiny")
+//        private String frontShiny;
+//        @JsonProperty("front_female")
+//        private String frontFemale;
+    }
+
+
 
     public Pokemon() {
     }
