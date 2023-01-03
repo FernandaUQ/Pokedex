@@ -65,7 +65,7 @@
 						<tbody>
 							<tr th:each="pokemon : ${pokemons}">
 								<td th:text="${pokemon.dexNumber}" style="text-align:left;"></td>
-								<td><a th:href="@{http://localhost:8081/pokemon?pokemonId={id}(id =${pokemon.dexNumber})}" th:text="${pokemon.name}" style="text-align: center;"></a></td>
+								<td><a th:href="@{http://localhost:8080/pokemon?pokemonId={id}(id =${pokemon.dexNumber})}" th:text="${pokemon.name}" style="text-align: center;"></a></td>
 <!--								<td><img th:src="${pokemon.front_default}"-->
 <!--									class="rounded-circle" width="15%" height="6%" align="right" /></td>-->
 							</tr>
@@ -78,7 +78,7 @@
 							<tbody>
 								<tr>
 									<td><img alt="Bootstrap Image Preview"
-							th:src="${pokemon.front_default}" class="rounded-circle center"
+							th:src="${pokemon.imgUrl}" class="rounded-circle center"
 							width="50%" height="25%" /></td>
 								</tr>
 								<tr>
@@ -86,9 +86,6 @@
 								</tr>		
 								<tr>
 									<td th:text="${pokemon.name}"></td>
-								</tr>
-									<td th:text="${species.genera}"></td>
-								</tr>
 							</tbody>
 						</table>
 					</div>
@@ -97,18 +94,18 @@
 							<tbody>
 								<tr>Type
 								</tr>
-								<tr th:each="type:${pokemon.type}">
-									<td th:text="${type.type}"></td>
-								</tr>
+<!--								<tr th:each="type:${pokemon.type}">-->
+<!--									<td th:text="${type.type}"></td>-->
+<!--								</tr>-->
 							</tbody>
 						</table>
 						<table class="table ">
 							<tbody>
 								<tr>Abilities
 								</tr>
-								<tr th:each="ability: ${pokemon.ability}">
-									<td th:text="${ability.ability}"></td>
-								</tr>
+<!--								<tr th:each="ability: ${pokemon.ability}">-->
+<!--									<td th:text="${ability.ability}"></td>-->
+<!--								</tr>-->
 							</tbody>
 						</table>
 					</div>
