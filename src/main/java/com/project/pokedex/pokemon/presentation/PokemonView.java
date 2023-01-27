@@ -4,6 +4,7 @@ import com.project.pokedex.pokemon.application.query.GetPokemonByDexNumberQuery;
 import com.project.pokedex.pokemon.application.query.GetPokemonByDexNumberQueryExecutor;
 import com.project.pokedex.pokemon.application.query.ListPokemonPaginatedQuery;
 import com.project.pokedex.pokemon.application.query.ListPokemonPaginatedQueryExecutor;
+import com.project.pokedex.pokemon.core.context.PokemonListing;
 import com.project.pokedex.pokemon.core.read.Pokemon;
 import com.project.pokedex.pokemon.core.read.PokemonEssential;
 import com.project.pokedex.pokemon.infrastructure.accessdata.PokemonQueryRepository;
@@ -45,7 +46,7 @@ public class PokemonView {
         return airway.dispatch(new GetPokemonByDexNumberQuery(dexNumber));
     }
 
-    private List<PokemonEssential> listPokemonPaginated(Integer limit, Integer offset) {
+    private List<PokemonListing> listPokemonPaginated(Integer limit, Integer offset) {
         airway.register(ListPokemonPaginatedQuery.class, new ListPokemonPaginatedQueryExecutor(pokemonQueryRepository));
         var pokemonList = airway.dispatch(new ListPokemonPaginatedQuery(limit, offset));
         return pokemonList != null && pokemonList.results != null && !pokemonList.results.isEmpty() ?

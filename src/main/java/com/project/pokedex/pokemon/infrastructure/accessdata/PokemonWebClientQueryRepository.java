@@ -1,7 +1,8 @@
 package com.project.pokedex.pokemon.infrastructure.accessdata;
 
+import com.project.pokedex.pokemon.core.context.PokemonConsumerListing;
+import com.project.pokedex.pokemon.core.context.PokemonListing;
 import com.project.pokedex.pokemon.core.read.Pokemon;
-import com.project.pokedex.pokemon.core.read.PokemonEssential;
 import com.project.pokedex.util.classes.Page;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -30,7 +31,7 @@ public class PokemonWebClientQueryRepository implements PokemonQueryRepository{
     }
 
     @Override
-    public Page<PokemonEssential> getAllPaginated(Integer limit, Integer offset) {
+    public Page<PokemonConsumerListing> getAllPaginated(Integer limit, Integer offset) {
 
         if (offset == null) offset = 0;
         if (limit == null) limit = 9999999;
@@ -40,7 +41,7 @@ public class PokemonWebClientQueryRepository implements PokemonQueryRepository{
                 .uri("/pokemon?offset={offset}&limit={limit}", offset, limit)
                 .accept(MediaType.ALL)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<Page<PokemonEssential>>() {})
+                .bodyToMono(new ParameterizedTypeReference<Page<PokemonConsumerListing>>() {})
                 .block();
     }
 }
