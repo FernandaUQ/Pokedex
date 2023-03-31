@@ -35,7 +35,7 @@ public class PokemonView {
     ) {
         ModelAndView modelAndView = new ModelAndView("Pokemon.html");
         modelAndView.addObject("pokemon", getPokemonByDexNumber(pokemonId));
-        modelAndView.addObject("pokemons", listPokemonPaginated(null, null));
+        modelAndView.addObject("pokemons", listPokemonPaginated(20, 1));
         return modelAndView;
 
     }

@@ -2,150 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
 
-<title>Pokemon</title>
+    <title>Pokemon</title>
 
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
-	rel="stylesheet" />
+    <link
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+            rel="stylesheet"/>
 
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"
-	rel="stylesheet" />
+    <link
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"
+            rel="stylesheet"/>
 
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-	rel="stylesheet" />
+    <link
+            href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+            rel="stylesheet"/>
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
+<div class="container-fluid" style="margin-top: 5px">
+    <div class="row">
+        <div class="col-md-1"
+             id="sidebar"
+             style="margin: 50px;
+                    height: 800px;
+                    width: 15%;
+                    overflow-x: scroll;"
+        >
+            <div th:replace="fragments/dexList :: dexList(${pokemons})"></div>
+        </div>
 
-				<a class="navbar-brand" href="#">Pokedex</a>
-			</div>
-			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="#">Pokemon</a></li>
-				</ul>
+    </div>
+</div>
+<script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"> Pokemon <span class="caret"></span>
-					</a>
-
-						<ul class="dropdown-menu">
-							<li><a href="http://www.algaworks.com" target="_blank">Site</a></li>
-							<li><a href="http://www.facebook.com/algaworks"
-								target="_blank">Facebook</a></li>
-							<li><a href="http://www.youtube.com/algaworks"
-								target="_blank">YouTube</a></li>
-							<li><a href="http://github.com/algaworks" target="_blank">Github</a></li>
-							<li><a href="http://blog.algaworks.com/" target="_blank">Nosso
-									Blog</a></li>
-						</ul></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<div class="container-fluid" style="margin-top: 5%">
-		<div class="row">
-			<div class="row" id="row-main">
-				<div class="col-md-3" id="sidebar">
-					<table class="table">
-						<tbody>
-							<tr th:each="pokemon : ${pokemons}">
-								<td th:text="${pokemon.number}" style="text-align:left;"></td>
-								<td><a th:href="@{http://localhost:8080/pokemon?pokemonId={id}(id =${pokemon.number})}" th:text="${pokemon.name}" style="text-align: center;"></a></td>
-<!--								<td><img th:src="${pokemon.front_default}"-->
-<!--									class="rounded-circle" width="15%" height="6%" align="right" /></td>-->
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="col-md-9" id="content">
-					<div class="col-md-4" style="width: 20%">
-						<table class="table">
-							<tbody>
-								<tr>
-									<td><img alt="Bootstrap Image Preview"
-							th:src="${pokemon.imgUrl}" class="rounded-circle center"
-							width="50%" height="25%" /></td>
-								</tr>
-								<tr>
-									<td th:text="${pokemon.id}"></td>
-								</tr>		
-								<tr>
-									<td th:text="${pokemon.name}"></td>
-							</tbody>
-						</table>
-					</div>
-					<div class="col-md-4">
-						<table class="table">
-							<tbody>
-								<tr>Type
-								</tr>
-<!--								<tr th:each="type:${pokemon.type}">-->
-<!--									<td th:text="${type.type}"></td>-->
-<!--								</tr>-->
-							</tbody>
-						</table>
-						<table class="table ">
-							<tbody>
-								<tr>Abilities
-								</tr>
-<!--								<tr th:each="ability: ${pokemon.ability}">-->
-<!--									<td th:text="${ability.ability}"></td>-->
-<!--								</tr>-->
-							</tbody>
-						</table>
-					</div>
-					<div class="col-md-4">
-						<h2>Heading</h2>
-						<p>Donec id elit non mi porta gravida at eget metus. Fusce
-							dapibus, tellus ac cursus commodo, tortor mauris condimentum
-							nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
-							malesuada magna mollis euismod. Donec sed odio dui.</p>
-						<p>
-							<a class="btn" href="#">View details »</a>
-						</p>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6"></div>
-					<div class="col-md-6">
-						<p>
-							Lorem ipsum dolor sit amet, <strong>consectetur
-								adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus
-							urna. In hac habitasse platea dictumst. Phasellus eu sem sapien,
-							sed vestibulum velit. Nam purus nibh, lacinia non faucibus et,
-							pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi
-								commodo sodales nisi id sodales. Proin consectetur, nisi id
-								commodo imperdiet, metus nunc consequat lectus, id bibendum diam
-								velit et dui.</em> Proin massa magna, vulputate nec bibendum nec,
-							posuere nec lacus. <small>Aliquam mi erat, aliquam vel
-								luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et
-								feugiat ipsum consequat eu.</small>
-						</p>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

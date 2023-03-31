@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="dexList(pokemons)">
+    <table class="table" style="overflow-y: scroll">
+        <tbody>
+        <tr th:each="pokemon : ${pokemons}">
+            <td>
+                <a th:href="@{http://localhost:8080/pokemon?pokemonId={id}(id =${pokemon.number})}"
+                   th:text="${pokemon.name}"
+                   style="text-align: center;">
+                </a>
+            </td>
+            <td>
+                <img th:src="${pokemon.spriteUrl}"
+                     class="rounded-circle" width="25px" height="25px" align="right"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</th:block>
